@@ -4,7 +4,9 @@ module.exports = {
   getActions,
   getAction,
   getActionsByProject,
-  addAction
+  addAction,
+  deleteAction,
+  updateAction
 };
 
 function getActions() {
@@ -23,4 +25,16 @@ function getActionsByProject(id) {
 
 function addAction(action) {
   return db("actions").insert(action);
+}
+
+function deleteAction(id) {
+  return db("actions")
+    .where({ id })
+    .del();
+}
+
+function updateAction(id, updated) {
+  return db("actions")
+    .where({ id })
+    .update(updated);
 }
